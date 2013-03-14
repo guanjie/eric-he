@@ -93,15 +93,7 @@ def is_right_angle_triangle(side_1, side_2, long_side):
     return side_1**2 + side_2**2 == long_side**2
 
 #======================Prime Number related===============================
-
-
-
-
-
-
-
-
-
+# TODO prime number related
 
 
 
