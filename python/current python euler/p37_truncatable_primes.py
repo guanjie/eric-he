@@ -12,7 +12,7 @@ from number_module import is_prime
 
 def main():
     result_sum = 0
-    for i in range(10,1000000):
+    for i in xrange(10,1000000):
         if is_prime(i):
             if is_truncatable_prime(i):
                 print '{} is one of them.'.format(i)

@@ -92,6 +92,12 @@ def permutation_number_list(num):
 def is_right_angle_triangle(side_1, side_2, long_side):
     return side_1**2 + side_2**2 == long_side**2
 
+# Has same digits
+def have_same_digits(num_1, num_2):
+    set_1 = set(str(num_1))
+    set_2 = set(str(num_2))
+    return set_1 == set_2
+
 #======================Prime Number related===============================
 # TODO prime number related
 

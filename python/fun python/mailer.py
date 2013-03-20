@@ -41,6 +41,7 @@ def mail(to, subject, text, attach=None):
 def example():
    email = raw_input("Your Gmail address: ")
    login(email)
-   mail("humancool@gmail.com", "Automate your life: sending emails", "Why'd the elephant sit on the marshmallow?")
+   for i in range(10):
+       mail("hyy0034656@hotmail.com", "this is the {}th email".format(i), "Guanjie here")
 
 example()
