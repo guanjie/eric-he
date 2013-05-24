@@ -42,6 +42,8 @@ def example():
    email = raw_input("Your Gmail address: ")
    login(email)
    for i in range(10):
-       mail("hyy0034656@hotmail.com", "this is the {}th email".format(i), "Guanjie here")
+       mail("zheng.lillian@gmail.com", "this is the {}th email".format(i), "Guanjie here")
 
 example()
+
+
