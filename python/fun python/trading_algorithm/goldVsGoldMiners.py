@@ -20,7 +20,7 @@ class OLSWindow(EventWindow):
         EventWindow.__init__(self, True, window_size, None)
         self.stock1 = stock1
         self.stock2 = stock2
-        
+
         self.last_calc = None
         self.daycount = window_size
         self.refresh_period = window_size // 10
@@ -31,13 +31,13 @@ class OLSWindow(EventWindow):
         self.zscore = None
         self.spread_stddev = MovingStandardDevWindow(True, self.refresh_period, None)
         self.spread_mavg = MovingAverageEventWindow(['spread'], True, self.refresh_period, None)
-        
+
     def handle_data(self, data):
         """
         New method to handle a data frame as sent to the algorithm's handle_data
         method.
         """
-        
+
         price1 = data[self.stock1].price
         price2 = data[self.stock2].price
         spread = price1 - price2
@@ -149,29 +149,29 @@ def handle_data(context, data):
         spread_bet = abs(notional1) + abs(notional2) * notional1/abs(notional1)
         can_buy = spread_bet < 0 or spread_bet < context.max_notional
         can_sell = spread_bet > 0 or spread_bet > -1 * context.max_notional
-        
-    
+
+
     # hit the escape hatch if we don't have enough data to do calculations.
     zscore = context.ols_window.zscore
     beta = context.ols_window.beta
-    
+
     bet_shares = 5
     if zscore >= 2.0 and can_sell:
         # sell the spread, betting it will narrow since it is over 2 std deviations 
         # away from the average
         order(context.gld, -1 * bet_shares)
         order(context.gdx, bet_shares * beta)
-            
+
     elif zscore <= -2.0 and can_buy:
         # buy the spread
         order(context.gld, bet_shares)
         order(context.gdx, -1 * beta * bet_shares)
-        
+
     elif zscore <= 1.0 and zscore >= -1.0:
         reduce_position(context.portfolio, context.gld, data, bet_shares)
         reduce_position(context.portfolio, context.gdx, data, bet_shares)
-            
-            
+
+
 def reduce_position(portfolio, stock, data, abs_quantity):
     """
     decrease exposure, regardless of position long/short.
